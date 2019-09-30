@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Aloitelaatikko | Home{% endblock %}
+
+  {% block body %}
+<div class="container mt-5">
+<div class="jumbotron">
+  <table class="table table-hover">
+  <h1 class="badge badge-secondary p-3 mb-4">Aloite App</h1>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Aihe</th>
+      <th scope="col">Kuvaus</th>
+      <th scope="col">KirjausPäivä</th>
+      <th scope="col">Etunimi</th>
+      <th scope="col">Sukunimi</th>
+      <th scope="col">Email</th>
+      <th scope="col">Toiminnot</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for aloite in aloitet %}
+    <tr>
+      <th>{{ aloite.id}}</th>
+      <td>{{ aloite.aihe}}</td>
+      <td>{{ aloite.kuvaus}}</td>
+      <td>{{ aloite.kirjausPäivä|date("m/d/Y")}}</td>
+      <td>{{ aloite.etunimi}}</td>
+      <td>{{ aloite.sukunimi}}</td>
+      <td>{{ aloite.email}}</td>
+      <td>
+         {# <a href="{{ path('linkki_nayta',{id: aloite.id}) }}" class="btn btn-dark">Näytä</a>
+         <a href="{{ path('linkki_muokkaa',{id: aloite.id}) }}" class="btn btn-success">Muokka</a> #}
+         <button poista-linkki= "{{ aloite.id }}" class="btn btn-danger poista-linkki">Poista</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+    </table>
+
+</div>
+</div>
+
+{% endblock %}
