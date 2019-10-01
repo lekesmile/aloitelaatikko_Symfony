@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nayta{% endblock %}
+
+  {% block body %}
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+     <th scope="col">ID</th>
+      <th scope="col">Aihe</th>
+      <th scope="col">Kuvaus</th>
+      <th scope="col">Etunimi</th>
+      <th scope="col">Sukunimi</th>
+      <th scope="col">Email</th>
+      <th scope="col">KirjausPäivä</th>
+      <th scope="col">Toiminnot</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <th>{{ aloitet.id}}</th>
+      <td>{{ aloitet.aihe}}</td>
+      <td>{{ aloitet.kuvaus}}</td>
+      <td>{{ aloitet.etunimi}}</td>
+      <td>{{ aloitet.sukunimi}}</td>
+      <td>{{ aloitet.email}}</td>
+      <td>{{ aloitet.kirjauspvm|date("d/m/Y")}}</td>
+      <td>
+        
+         {# <a href="aloite_muokkaa" class="btn btn-success">Muokkaa</a> #}
+         <a href="{{ path('aloite_muokkaa',{id: aloitet.id}) }}" class="btn btn-success">Muokkaa</a>
+         <button poista-linkki= "{{ aloitet.id }}" class="btn btn-danger poista-linkki">Poista</button>
+      </td>
+    </tr>
+
+  </tbody>
+    </table>
+
+
+
+{% endblock %}

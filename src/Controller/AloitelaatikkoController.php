@@ -27,108 +27,110 @@ class AloitelaatikkoController extends AbstractController{
       ]);
   }
 
-//   /**
-//  * @Route("/linkki/uusi", name="linkki_uusi")
-//  */
+  /**
+ * @Route("/aloite/uusi", name="aloite_uusi")
+ */
 
-//  public function uusi(Request $request){
+ public function uusi(Request $request){
 
-//     //Luodaan linkki -olio
-//      $linkki = new Linkki();
+    //Luodaan linkki -olio
+     $aloite = new Aloitekanta();
 
-//      //Luodaan lomake
-// $form = $this->createForm(
-//     LinkkiFormType::class,
-//     $linkki, [
-//         'action' => $this->generateUrl('linkki_uusi'),
-//         'attr' => ['class' => 'form-signin']
-//     ]
-// );
+     //Luodaan lomake
+$form = $this->createForm(
+    LinkkiFormType::class,
+    $aloite, [
+        'action' => $this->generateUrl('aloite_uusi'),
+        'attr' => ['class' => 'form-signin']
+    ]
+);
 
-// //käsitellään lomakkeelta tulleet tiedot
-// $form->handleRequest($request);
-// if($form->isSubmitted()){
-//     // Talletetaan lomakettiedot muutujaan
-//     $linkki = $form->getData();
+//käsitellään lomakkeelta tulleet tiedot
+$form->handleRequest($request);
+if($form->isSubmitted()){
+    // Talletetaan lomakettiedot muutujaan
+    $aloite = $form->getData();
 
-//     // Talletetaan tietokantaan
-//     $entityManager = $this->getDoctrine()->getManager();
-//     $entityManager->persist($linkki);
-//     $entityManager->flush();
-// }
+    // Talletetaan tietokantaan
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->persist($aloite);
+    $entityManager->flush();
 
-//     // Kutsutaan index-kontrolleria
-//      return $this->render('linkki/uusi.html.twig', [
-//          'form1' => $form->createView()
-//      ]);
-//  }
+    return $this->redirectToRoute('aloite_lista');
+}
 
-//   /**
-//  * @Route("/linkki/{id}", name= "linkki_nayta")
-//  */
+    // Kutsutaan index-kontrolleria
+     return $this->render('aloite/uusi.html.twig', [
+         'form1' => $form->createView()
+     ]);
+ }
 
-// public function nayta($id){
-//     $linkki = $this->getDoctrine()->getRepository(Linkki::class)->find($id);
+  /**
+ * @Route("/aloite/{id}", name= "aloite_nayta")
+ */
 
-//     return $this->render('linkki/nayta.html.twig', [
-//         'linkki' => $linkki,
-//     ]);
-//  }
+public function nayta($id){
+    $aloitet = $this->getDoctrine()->getRepository(Aloitekanta::class)->find($id);
 
-//   /**
-//  * @Route("/linkki/muokkaa/{id}", name="linkki_muokkaa")
-//  */
+    return $this->render('aloite/nayta.html.twig', [
+        'aloitet' => $aloitet,
+    ]);
+ }
 
-// public function muokkaa(Request $request, $id){
-//     $linkki = $this->getDoctrine()->getRepository(Linkki::class)->find($id);
+  /**
+ * @Route("/aloite/muokkaa/{id}", name="aloite_muokkaa")
+ */
+
+public function muokkaa(Request $request, $id){
+    $aloitet = $this->getDoctrine()->getRepository(Aloitekanta::class)->find($id);
     
 
-//  $form = $this->createForm(
-//     LinkkiFormType::class,
-//     $linkki, [
+ $form = $this->createForm(
+    LinkkiFormType::class,
+    $aloitet, [
         
-//         'attr' => ['class' => 'form-signin']
-//     ]
-// );
+        'attr' => ['class' => 'form-signin']
+    ]
+);
 
-// //käsitellään lomakkeelta tulleet tiedot
-// $form->handleRequest($request);
-// if($form->isSubmitted()){
-//     // Talletetaan lomakettiedot muutujaan
-//     $linkki = $form->getData();
+//käsitellään lomakkeelta tulleet tiedot
+$form->handleRequest($request);
+if($form->isSubmitted()){
+    // Talletetaan lomakettiedot muutujaan
+    $linkki = $form->getData();
 
-//     // Talletetaan tietokantaan
-//     $entityManager = $this->getDoctrine()->getManager();
-//     $entityManager->flush();
+    // Talletetaan tietokantaan
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->flush();
 
-//     // Kutsutaan index-kontroller
-//     return $this->redirectToRoute('linkki_lista');
-// }
+    // Kutsutaan index-kontroller
+    return $this->redirectToRoute('aloite_lista');
+}
 
-// return $this->render('linkki/muokkaa.html.twig', [
-//     'form1' => $form->createView(),
-// ]);
+return $this->render('aloite/muokkaa.html.twig', [
+    'form1' => $form->createView(),
+]);
 
-// }
+}
 
-//   /**
-//  * @Route("/linkki/poista/{id}", name="linkki_poista")
-//  */
+  /**
+ * @Route("/aloite/poista/{id}", name="aloite_poista")
+ */
 
-// public function poista(Request $request, $id){
+public function poista(Request $request, $id){
 
-//     $linkki = $this->getDoctrine()->getRepository(Linkki::class)->find($id);
+    $aloitet = $this->getDoctrine()->getRepository(Aloitekanta::class)->find($id);
    
-//     //Poistetaan tietokannaasta
-//     $entityManager = $this->getDoctrine()->getManager();
-//     $entityManager->remove($linkki);
-//     $entityManager->flush();
+    //Poistetaan tietokannaasta
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->remove($aloitet);
+    $entityManager->flush();
 
-//     // Kutsutaan index-kontroller
-//     return $this->redirectToRoute('linkki_lista');
+    // Kutsutaan index-kontroller
+    return $this->redirectToRoute('aloite_lista');
 
-//     return $this->render('linkki/poista.html.twig');
-//  }
+    return $this->render('aloite/poista.html.twig');
+ }
   }
 
 

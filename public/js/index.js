@@ -23,7 +23,7 @@
         // Painettiinko Kyllä-painiketta?
         if(result == true) {
           // Kyllä painettiin, joten siirrytään poista-sivulle
-          var url = "/linkki/poista/" + id;
+          var url = "/aloite/poista/" + id;
          
           $(location).attr('href', url);
         }

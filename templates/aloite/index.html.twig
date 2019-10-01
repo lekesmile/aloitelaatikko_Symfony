@@ -13,9 +13,6 @@
       <th scope="col">Aihe</th>
       <th scope="col">Kuvaus</th>
       <th scope="col">KirjausPäivä</th>
-      <th scope="col">Etunimi</th>
-      <th scope="col">Sukunimi</th>
-      <th scope="col">Email</th>
       <th scope="col">Toiminnot</th>
 
     </tr>
@@ -26,13 +23,10 @@
       <th>{{ aloite.id}}</th>
       <td>{{ aloite.aihe}}</td>
       <td>{{ aloite.kuvaus}}</td>
-      <td>{{ aloite.kirjausPäivä|date("m/d/Y")}}</td>
-      <td>{{ aloite.etunimi}}</td>
-      <td>{{ aloite.sukunimi}}</td>
-      <td>{{ aloite.email}}</td>
+      <td>{{ aloite.kirjauspvm|date("d/m/Y")}}</td>
       <td>
-         {# <a href="{{ path('linkki_nayta',{id: aloite.id}) }}" class="btn btn-dark">Näytä</a>
-         <a href="{{ path('linkki_muokkaa',{id: aloite.id}) }}" class="btn btn-success">Muokka</a> #}
+         <a href="{{ path('aloite_nayta',{id: aloite.id}) }}" class="btn btn-dark">Näytä</a>
+         <a href="{{ path('aloite_muokkaa',{id: aloite.id}) }}" class="btn btn-success">Muokkaa</a>
          <button poista-linkki= "{{ aloite.id }}" class="btn btn-danger poista-linkki">Poista</button>
       </td>
     </tr>
@@ -44,3 +38,8 @@
 </div>
 
 {% endblock %}
+
+{# {% block javascripts %}
+  {{ parent() }}
+  <script src="js/index.js"></script>
+{% endblock %}  #}

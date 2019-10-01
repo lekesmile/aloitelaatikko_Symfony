@@ -26,10 +26,6 @@ class Aloitekanta
      */
     private $kuvaus;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $kirjauspäivä;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -45,6 +41,11 @@ class Aloitekanta
      * @ORM\Column(type="string", length=200, nullable=true)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $kirjauspvm;
 
     public function getId(): ?int
     {
@@ -75,17 +76,6 @@ class Aloitekanta
         return $this;
     }
 
-    public function getKirjauspäivä(): ?\DateTimeInterface
-    {
-        return $this->kirjauspäivä;
-    }
-
-    public function setKirjauspäivä(\DateTimeInterface $kirjauspäivä): self
-    {
-        $this->kirjauspäivä = $kirjauspäivä;
-
-        return $this;
-    }
 
     public function getEtunimi(): ?string
     {
@@ -119,6 +109,18 @@ class Aloitekanta
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getKirjauspvm(): ?\DateTimeInterface
+    {
+        return $this->kirjauspvm;
+    }
+
+    public function setKirjauspvm(\DateTimeInterface $kirjauspvm): self
+    {
+        $this->kirjauspvm = $kirjauspvm;
 
         return $this;
     }
